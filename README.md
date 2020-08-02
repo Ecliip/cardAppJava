@@ -1,2 +1,2 @@
 # cardAppJava
-card and deck in java
+playingCard and deck in java
