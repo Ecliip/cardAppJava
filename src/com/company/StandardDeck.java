@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StandardDeck implements Deck {
     final public List<Card> deck;
@@ -30,7 +31,6 @@ public class StandardDeck implements Deck {
             return 1;
         }
         return 0;
-
     });
     }
 
@@ -64,7 +64,14 @@ public class StandardDeck implements Deck {
 
     @Override
     public void addCard(Card card) {
-        
+        var result = deck.stream().filter(c -> c.getRank().getValue() == card.getRank().getValue() &&
+                c.getSuit().getValue() == card.getSuit().getValue() ).collect(Collectors.toList());
+        if(result.size() != 0) {
+            System.err.println("Warning: all the card should be unique");
+            return;
+        }
+        deck.add(card);
+
     }
 
     @Override
